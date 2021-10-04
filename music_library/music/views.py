@@ -1,3 +1,4 @@
+from functools import partial
 from django.shortcuts import render
 from .models import Song
 from .serializer import SongSerializer
@@ -23,7 +24,7 @@ class SongList(APIView):
 
 class SongDetail(APIView):
 
-    def get_object(self,pk):
+    def get_object(self, pk):
         try:
             return Song.objects.get(pk=pk)
         except Song.DoesNotExist:
@@ -46,3 +47,12 @@ class SongDetail(APIView):
         song = self.get_object(pk)
         song.delete()
         return Response(status= status.HTTP_204_NO_CONTENT)
+
+    def patch(self, request, pk):
+        song = self.get_object(pk)
+        song.likes += 1
+        serializer = SongSerializer(song,data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
