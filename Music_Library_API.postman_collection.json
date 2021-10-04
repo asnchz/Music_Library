@@ -11,19 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/music/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"music",
-						""
-					]
+					"raw": ""
 				}
 			},
 			"response": []
@@ -83,6 +71,24 @@
 				"url": {
 					"raw": ""
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like_Song",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": null
 			},
 			"response": []
 		}
